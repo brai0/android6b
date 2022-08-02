@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 
+//<uses-permission android:name="android.permission.READ_CONTACTS"/>
 public class MainActivity extends AppCompatActivity {
 
     public  static final int RequestPermissionCode  = 1 ;
