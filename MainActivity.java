@@ -23,7 +23,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
-
 //<uses-permission android:name="android.permission.READ_CONTACTS"/>
 public class MainActivity extends AppCompatActivity {
 
@@ -38,21 +37,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button button = findViewById(R.id.button);
-        EnableRuntimePermission();
+        ActivityCompat.requestPermissions(MainActivity.this,new String[]{ Manifest.permission.READ_CONTACTS}, RequestPermissionCode);
         button.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
             startActivityForResult(intent, 1);
         });
-    }
-
-    public void EnableRuntimePermission(){
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.READ_CONTACTS))
-        {
-            Toast.makeText(MainActivity.this,"CONTACTS permission allows us to Access CONTACTS app", Toast.LENGTH_LONG).show();
-        } else {
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{ Manifest.permission.READ_CONTACTS}, RequestPermissionCode);
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
